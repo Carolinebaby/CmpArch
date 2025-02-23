@@ -1,0 +1,1043 @@
+
+------------------ clock 0--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+
+
+Register Status 
+Reg	Busy	Value
+
+
+------------------ clock 1--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins0	
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+0	Yes	Loop	ld	x2	x1	0	EXEC	x2	
+1	Yes		addi	x2	x2	1	ISSUE	x2	
+
+
+Register Status 
+Reg	Busy	Value
+x2	Yes	ins0
+
+
+------------------ clock 2--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins0	
+Add2	Yes	addi	R(x1)	8		
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins1
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+0	Yes	Loop	ld	x2	x1	0	EX_CM	x2	
+1	Yes		addi	x2	x2	1	ISSUE	x2	
+2	Yes		sd	x2	x1	0	EXEC	x2	
+3	Yes		addi	x1	x1	8	EXEC	x1	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ins3
+x2	Yes	ins0
+
+
+------------------ clock 3--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins0	
+Add2	Yes	addi	R(x1)	8		
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins3	
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins1
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+0	Yes	Loop	ld	x2	x1	0	WB	x2	
+1	Yes		addi	x2	x2	1	ISSUE	x2	
+2	Yes		sd	x2	x1	0	EX_CM	x2	
+3	Yes		addi	x1	x1	8	EXEC	x1	
+4	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ins3
+x2	Yes	ins0
+
+
+------------------ clock 4--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi	MA1	1		
+Add2	Yes	addi	R(x1)	8		
+Add3	Yes	addi		1	ins5	
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins3	
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins1
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+0	Yes	Loop	ld	x2	x1	0	COMMIT	x2	MA1
+1	Yes		addi	x2	x2	1	EXEC	x2	
+2	Yes		sd	x2	x1	0	EX_CM	x2	
+3	Yes		addi	x1	x1	8	WB	x1	
+4	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+5	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+6	Yes		addi	x2	x2	1	ISSUE	x2	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ins3
+x2	Yes	ins0
+
+
+------------------ clock 5--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi	MA1	1		
+Add2	No					
+Add3	Yes	addi		1	ins5	
+Add4	Yes	addi	ADI1	8		
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne	ADI1	R(x3)		
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins1
+Store2	Yes	x1(0)	ins6
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+1	Yes		addi	x2	x2	1	WB	x2	
+2	Yes		sd	x2	x1	0	EX_CM	x2	
+3	Yes		addi	x1	x1	8	COMMIT	x1	ADI1
+4	Yes		bne	Loop	x1	x3	EXEC	Loop	
+5	Yes	Loop	ld	x2	x1	0	EXEC	x2	
+6	Yes		addi	x2	x2	1	ISSUE	x2	
+7	Yes		sd	x2	x1	0	ISSUE	x2	
+8	Yes		addi	x1	x1	8	EXEC	x1	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ins3
+x2	Yes	MA1
+
+
+------------------ clock 6--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	No					
+Add2	No					
+Add3	Yes	addi		1	ins5	
+Add4	Yes	addi	ADI1	8		
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	Yes	bne		R(x3)	ins8	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	Yes	x1(0)	ins6
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+1	Yes		addi	x2	x2	1	COMMIT	x2	ADI2
+2	Yes		sd	x2	x1	0	COMMIT	x2	
+3	Yes		addi	x1	x1	8	COMMIT	x1	ADI1
+4	Yes		bne	Loop	x1	x3	COMMIT	Loop	
+5	Yes	Loop	ld	x2	x1	0	EXEC	x2	
+6	Yes		addi	x2	x2	1	ISSUE	x2	
+7	Yes		sd	x2	x1	0	EXEC	x2	
+8	Yes		addi	x1	x1	8	EXEC	x1	
+9	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ins3
+x2	Yes	MA1
+
+
+------------------ clock 7--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	No					
+Add3	Yes	addi		1	ins5	
+Add4	Yes	addi	ADI1	8		
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	Yes	bne		R(x3)	ins8	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	Yes	x1(0)	ins6
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+3	Yes		addi	x1	x1	8	COMMIT	x1	ADI1
+4	Yes		bne	Loop	x1	x3	COMMIT	Loop	
+5	Yes	Loop	ld	x2	x1	0	EX_CM	x2	
+6	Yes		addi	x2	x2	1	ISSUE	x2	
+7	Yes		sd	x2	x1	0	EXEC	x2	
+8	Yes		addi	x1	x1	8	EXEC	x1	
+9	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+10	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+11	Yes		addi	x2	x2	1	ISSUE	x2	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ins3
+x2	Yes	ADI2
+
+
+------------------ clock 8--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	Yes	addi		8	ins8	
+Add3	Yes	addi		1	ins5	
+Add4	Yes	addi	ADI1	8		
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	Yes	bne		R(x3)	ins8	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	Yes	x1(0)	ins6
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+5	Yes	Loop	ld	x2	x1	0	WB	x2	
+6	Yes		addi	x2	x2	1	ISSUE	x2	
+7	Yes		sd	x2	x1	0	EX_CM	x2	
+8	Yes		addi	x1	x1	8	EXEC	x1	
+9	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+10	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+11	Yes		addi	x2	x2	1	ISSUE	x2	
+12	Yes		sd	x2	x1	0	ISSUE	x2	
+13	Yes		addi	x1	x1	8	ISSUE	x1	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI1
+x2	Yes	ADI2
+
+
+------------------ clock 9--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	Yes	addi		8	ins8	
+Add3	Yes	addi	MA2	1		
+Add4	Yes	addi	ADI1	8		
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins13	
+Branch2	Yes	bne		R(x3)	ins8	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	Yes	x1(0)	ins6
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+5	Yes	Loop	ld	x2	x1	0	COMMIT	x2	MA2
+6	Yes		addi	x2	x2	1	EXEC	x2	
+7	Yes		sd	x2	x1	0	EX_CM	x2	
+8	Yes		addi	x1	x1	8	WB	x1	
+9	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+10	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+11	Yes		addi	x2	x2	1	ISSUE	x2	
+12	Yes		sd	x2	x1	0	ISSUE	x2	
+13	Yes		addi	x1	x1	8	ISSUE	x1	
+14	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI1
+x2	Yes	ADI2
+
+
+------------------ clock 10--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	Yes	addi	ADI3	8		
+Add3	Yes	addi	MA2	1		
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins13	
+Branch2	Yes	bne	ADI3	R(x3)		
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	Yes	x1(0)	ins6
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+6	Yes		addi	x2	x2	1	WB	x2	
+7	Yes		sd	x2	x1	0	EX_CM	x2	
+8	Yes		addi	x1	x1	8	COMMIT	x1	ADI3
+9	Yes		bne	Loop	x1	x3	EXEC	Loop	
+10	Yes	Loop	ld	x2	x1	0	EXEC	x2	
+11	Yes		addi	x2	x2	1	ISSUE	x2	
+12	Yes		sd	x2	x1	0	ISSUE	x2	
+13	Yes		addi	x1	x1	8	EXEC	x1	
+14	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+15	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI1
+x2	Yes	MA2
+
+
+------------------ clock 11--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	Yes	addi	ADI3	8		
+Add3	No					
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins13	
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	No		
+Store3	Yes	x1(0)	ins16
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+6	Yes		addi	x2	x2	1	COMMIT	x2	ADI4
+7	Yes		sd	x2	x1	0	COMMIT	x2	
+8	Yes		addi	x1	x1	8	COMMIT	x1	ADI3
+9	Yes		bne	Loop	x1	x3	COMMIT	Loop	
+10	Yes	Loop	ld	x2	x1	0	EXEC	x2	
+11	Yes		addi	x2	x2	1	ISSUE	x2	
+12	Yes		sd	x2	x1	0	EXEC	x2	
+13	Yes		addi	x1	x1	8	EXEC	x1	
+14	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+15	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+16	Yes		addi	x2	x2	1	ISSUE	x2	
+17	Yes		sd	x2	x1	0	ISSUE	x2	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI1
+x2	Yes	MA2
+
+
+------------------ clock 12--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	Yes	addi	ADI3	8		
+Add3	Yes	addi		8	ins13	
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins13	
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	No		
+Store3	Yes	x1(0)	ins16
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+8	Yes		addi	x1	x1	8	COMMIT	x1	ADI3
+9	Yes		bne	Loop	x1	x3	COMMIT	Loop	
+10	Yes	Loop	ld	x2	x1	0	EX_CM	x2	
+11	Yes		addi	x2	x2	1	ISSUE	x2	
+12	Yes		sd	x2	x1	0	EXEC	x2	
+13	Yes		addi	x1	x1	8	EXEC	x1	
+14	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+15	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+16	Yes		addi	x2	x2	1	ISSUE	x2	
+17	Yes		sd	x2	x1	0	ISSUE	x2	
+18	Yes		addi	x1	x1	8	ISSUE	x1	
+19	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI1
+x2	Yes	ADI4
+
+
+------------------ clock 13--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	Yes	addi	ADI3	8		
+Add3	Yes	addi		8	ins13	
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins13	
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	No		
+Store3	Yes	x1(0)	ins16
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+10	Yes	Loop	ld	x2	x1	0	WB	x2	
+11	Yes		addi	x2	x2	1	ISSUE	x2	
+12	Yes		sd	x2	x1	0	EX_CM	x2	
+13	Yes		addi	x1	x1	8	EXEC	x1	
+14	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+15	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+16	Yes		addi	x2	x2	1	ISSUE	x2	
+17	Yes		sd	x2	x1	0	ISSUE	x2	
+18	Yes		addi	x1	x1	8	ISSUE	x1	
+19	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+20	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI3
+x2	Yes	ADI4
+
+
+------------------ clock 14--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi	MA3	1		
+Add2	Yes	addi	ADI3	8		
+Add3	Yes	addi		8	ins13	
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins13	
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	No		
+Store3	Yes	x1(0)	ins16
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+10	Yes	Loop	ld	x2	x1	0	COMMIT	x2	MA3
+11	Yes		addi	x2	x2	1	EXEC	x2	
+12	Yes		sd	x2	x1	0	EX_CM	x2	
+13	Yes		addi	x1	x1	8	WB	x1	
+14	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+15	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+16	Yes		addi	x2	x2	1	ISSUE	x2	
+17	Yes		sd	x2	x1	0	ISSUE	x2	
+18	Yes		addi	x1	x1	8	ISSUE	x1	
+19	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+20	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI3
+x2	Yes	ADI4
+
+
+------------------ clock 15--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi	MA3	1		
+Add2	No					
+Add3	Yes	addi	ADI5	8		
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne	ADI5	R(x3)		
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	No		
+Store3	Yes	x1(0)	ins16
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+11	Yes		addi	x2	x2	1	WB	x2	
+12	Yes		sd	x2	x1	0	EX_CM	x2	
+13	Yes		addi	x1	x1	8	COMMIT	x1	ADI5
+14	Yes		bne	Loop	x1	x3	EXEC	Loop	
+15	Yes	Loop	ld	x2	x1	0	EXEC	x2	
+16	Yes		addi	x2	x2	1	ISSUE	x2	
+17	Yes		sd	x2	x1	0	ISSUE	x2	
+18	Yes		addi	x1	x1	8	EXEC	x1	
+19	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+20	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI3
+x2	Yes	MA3
+
+
+------------------ clock 16--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	No					
+Add2	Yes	addi		1	ins20	
+Add3	Yes	addi	ADI5	8		
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	Yes	x1(0)	ins21
+Store3	Yes	x1(0)	ins16
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+11	Yes		addi	x2	x2	1	COMMIT	x2	ADI6
+12	Yes		sd	x2	x1	0	COMMIT	x2	
+13	Yes		addi	x1	x1	8	COMMIT	x1	ADI5
+14	Yes		bne	Loop	x1	x3	COMMIT	Loop	
+15	Yes	Loop	ld	x2	x1	0	EXEC	x2	
+16	Yes		addi	x2	x2	1	ISSUE	x2	
+17	Yes		sd	x2	x1	0	EXEC	x2	
+18	Yes		addi	x1	x1	8	EXEC	x1	
+19	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+20	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+21	Yes		addi	x2	x2	1	ISSUE	x2	
+22	Yes		sd	x2	x1	0	ISSUE	x2	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI3
+x2	Yes	MA3
+
+
+------------------ clock 17--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		8	ins18	
+Add2	Yes	addi		1	ins20	
+Add3	Yes	addi	ADI5	8		
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins23	
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	Yes	x1(0)	ins21
+Store3	Yes	x1(0)	ins16
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+13	Yes		addi	x1	x1	8	COMMIT	x1	ADI5
+14	Yes		bne	Loop	x1	x3	COMMIT	Loop	
+15	Yes	Loop	ld	x2	x1	0	EX_CM	x2	
+16	Yes		addi	x2	x2	1	ISSUE	x2	
+17	Yes		sd	x2	x1	0	EXEC	x2	
+18	Yes		addi	x1	x1	8	EXEC	x1	
+19	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+20	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+21	Yes		addi	x2	x2	1	ISSUE	x2	
+22	Yes		sd	x2	x1	0	ISSUE	x2	
+23	Yes		addi	x1	x1	8	ISSUE	x1	
+24	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI3
+x2	Yes	ADI6
+
+
+------------------ clock 18--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		8	ins18	
+Add2	Yes	addi		1	ins20	
+Add3	Yes	addi	ADI5	8		
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins23	
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	Yes	x1(0)	ins21
+Store3	Yes	x1(0)	ins16
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+15	Yes	Loop	ld	x2	x1	0	WB	x2	
+16	Yes		addi	x2	x2	1	ISSUE	x2	
+17	Yes		sd	x2	x1	0	EX_CM	x2	
+18	Yes		addi	x1	x1	8	EXEC	x1	
+19	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+20	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+21	Yes		addi	x2	x2	1	ISSUE	x2	
+22	Yes		sd	x2	x1	0	ISSUE	x2	
+23	Yes		addi	x1	x1	8	ISSUE	x1	
+24	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+25	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI5
+x2	Yes	ADI6
+
+
+------------------ clock 19--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		8	ins18	
+Add2	Yes	addi		1	ins20	
+Add3	Yes	addi	ADI5	8		
+Add4	Yes	addi	MA4	1		
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins23	
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	No	
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	Yes	x1(0)	ins21
+Store3	Yes	x1(0)	ins16
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+15	Yes	Loop	ld	x2	x1	0	COMMIT	x2	MA4
+16	Yes		addi	x2	x2	1	EXEC	x2	
+17	Yes		sd	x2	x1	0	EX_CM	x2	
+18	Yes		addi	x1	x1	8	WB	x1	
+19	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+20	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+21	Yes		addi	x2	x2	1	ISSUE	x2	
+22	Yes		sd	x2	x1	0	ISSUE	x2	
+23	Yes		addi	x1	x1	8	ISSUE	x1	
+24	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+25	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI5
+x2	Yes	ADI6
+
+
+------------------ clock 20--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi	ADI7	8		
+Add2	Yes	addi		1	ins20	
+Add3	No					
+Add4	Yes	addi	MA4	1		
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins23	
+Branch2	Yes	bne	ADI7	R(x3)		
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	No	
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	Yes	x1(0)	ins21
+Store3	Yes	x1(0)	ins16
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+16	Yes		addi	x2	x2	1	WB	x2	
+17	Yes		sd	x2	x1	0	EX_CM	x2	
+18	Yes		addi	x1	x1	8	COMMIT	x1	ADI7
+19	Yes		bne	Loop	x1	x3	EXEC	Loop	
+20	Yes	Loop	ld	x2	x1	0	EXEC	x2	
+21	Yes		addi	x2	x2	1	ISSUE	x2	
+22	Yes		sd	x2	x1	0	ISSUE	x2	
+23	Yes		addi	x1	x1	8	EXEC	x1	
+24	Yes		bne	Loop	x1	x3	ISSUE	Loop	
+25	Yes	Loop	ld	x2	x1	0	ISSUE	x2	
+
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI5
+x2	Yes	MA4
+

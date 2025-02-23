@@ -1,0 +1,1264 @@
+
+------------------ clock 0--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+
+
+Register Status 
+Reg	Busy	Value
+
+
+------------------ clock 1--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x2(32)
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+0	Yes		fld	f6	x2	32	EXEC	f6	
+
+
+Register Status 
+Reg	Busy	Value
+f6	Yes	ins0
+
+
+------------------ clock 2--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x2(32)
+Load2	Yes	x3(44)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+0	Yes		fld	f6	x2	32	EX_CM	f6	
+1	Yes		fld	f2	x3	44	EXEC	f2	
+
+
+Register Status 
+Reg	Busy	Value
+f2	Yes	ins1
+f6	Yes	ins0
+
+
+------------------ clock 3--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	Yes	fmul		R(x4)	ins1	
+fMult2	No					
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x2(32)
+Load2	Yes	x3(44)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+0	Yes		fld	f6	x2	32	WB	f6	
+1	Yes		fld	f2	x3	44	EX_CM	f2	
+2	Yes		fmul	f0	f2	f4	ISSUE	f0	
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	ins2
+f2	Yes	ins1
+f6	Yes	ins0
+
+
+------------------ clock 4--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	Yes	fsub		FMA0	ins1	
+fAdd2	No					
+fAdd3	No					
+fMult1	Yes	fmul		R(x4)	ins1	
+fMult2	No					
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x3(44)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+0	Yes		fld	f6	x2	32	COMMIT	f6	FMA0
+1	Yes		fld	f2	x3	44	WB	f2	
+2	Yes		fmul	f0	f2	f4	ISSUE	f0	
+3	Yes		fsub	f8	f2	f6	ISSUE	f8	
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	ins2
+f2	Yes	ins1
+f6	Yes	ins0
+f8	Yes	ins3
+
+
+------------------ clock 5--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	Yes	fsub	FMA1	FMA0		
+fAdd2	No					
+fAdd3	No					
+fMult1	Yes	fmul	FMA1	R(x4)		
+fMult2	Yes	fdiv		FMA0	ins2	
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+1	Yes		fld	f2	x3	44	COMMIT	f2	FMA1
+2	Yes		fmul	f0	f2	f4	EXEC	f0	
+3	Yes		fsub	f8	f2	f6	EXEC	f8	
+4	Yes		fdiv	f0	f0	f6	ISSUE	f0	
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	ins2
+f2	Yes	ins1
+f6	No	FMA0
+f8	Yes	ins3
+
+
+------------------ clock 6--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	Yes	fsub	FMA1	FMA0		
+fAdd2	Yes	fadd		FMA1	ins3	
+fAdd3	No					
+fMult1	Yes	fmul	FMA1	R(x4)		
+fMult2	Yes	fdiv		FMA0	ins2	
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+2	Yes		fmul	f0	f2	f4	EXEC	f0	
+3	Yes		fsub	f8	f2	f6	EXEC	f8	
+4	Yes		fdiv	f0	f0	f6	ISSUE	f0	
+5	Yes		fadd	f6	f8	f2	ISSUE	f6	
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	ins2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	Yes	ins3
+
+
+------------------ clock 7--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	Yes	fsub	FMA1	FMA0		
+fAdd2	Yes	fadd		FMA1	ins3	
+fAdd3	No					
+fMult1	Yes	fmul	FMA1	R(x4)		
+fMult2	Yes	fdiv		FMA0	ins2	
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+2	Yes		fmul	f0	f2	f4	EXEC	f0	
+3	Yes		fsub	f8	f2	f6	WB	f8	
+4	Yes		fdiv	f0	f0	f6	ISSUE	f0	
+5	Yes		fadd	f6	f8	f2	ISSUE	f6	
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	ins2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	Yes	ins3
+
+
+------------------ clock 8--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	Yes	fadd	FSUB3	FMA1		
+fAdd3	No					
+fMult1	Yes	fmul	FMA1	R(x4)		
+fMult2	Yes	fdiv		FMA0	ins2	
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+2	Yes		fmul	f0	f2	f4	EXEC	f0	
+3	Yes		fsub	f8	f2	f6	COMMIT	f8	FSUB3
+4	Yes		fdiv	f0	f0	f6	ISSUE	f0	
+5	Yes		fadd	f6	f8	f2	EXEC	f6	
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	ins2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	Yes	ins3
+
+
+------------------ clock 9--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	Yes	fadd	FSUB3	FMA1		
+fAdd3	No					
+fMult1	Yes	fmul	FMA1	R(x4)		
+fMult2	Yes	fdiv		FMA0	ins2	
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+2	Yes		fmul	f0	f2	f4	EXEC	f0	
+3	Yes		fsub	f8	f2	f6	COMMIT	f8	FSUB3
+4	Yes		fdiv	f0	f0	f6	ISSUE	f0	
+5	Yes		fadd	f6	f8	f2	EXEC	f6	
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	ins2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	Yes	ins3
+
+
+------------------ clock 10--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	Yes	fadd	FSUB3	FMA1		
+fAdd3	No					
+fMult1	Yes	fmul	FMA1	R(x4)		
+fMult2	Yes	fdiv		FMA0	ins2	
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+2	Yes		fmul	f0	f2	f4	EXEC	f0	
+3	Yes		fsub	f8	f2	f6	COMMIT	f8	FSUB3
+4	Yes		fdiv	f0	f0	f6	ISSUE	f0	
+5	Yes		fadd	f6	f8	f2	WB	f6	
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	ins2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	Yes	ins3
+
+
+------------------ clock 11--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	Yes	fmul	FMA1	R(x4)		
+fMult2	Yes	fdiv		FMA0	ins2	
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+2	Yes		fmul	f0	f2	f4	WB	f0	
+3	Yes		fsub	f8	f2	f6	COMMIT	f8	FSUB3
+4	Yes		fdiv	f0	f0	f6	ISSUE	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	ins2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	Yes	ins3
+
+
+------------------ clock 12--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	Yes	fdiv	FMUL2	FMA0		
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+2	Yes		fmul	f0	f2	f4	COMMIT	f0	FMUL2
+3	Yes		fsub	f8	f2	f6	COMMIT	f8	FSUB3
+4	Yes		fdiv	f0	f0	f6	EXEC	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	ins2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	Yes	ins3
+
+
+------------------ clock 13--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	Yes	fdiv	FMUL2	FMA0		
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+3	Yes		fsub	f8	f2	f6	COMMIT	f8	FSUB3
+4	Yes		fdiv	f0	f0	f6	EXEC	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	FMUL2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	Yes	ins3
+
+
+------------------ clock 14--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	Yes	fdiv	FMUL2	FMA0		
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+4	Yes		fdiv	f0	f0	f6	EXEC	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	FMUL2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	No	FSUB3
+
+
+------------------ clock 15--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	Yes	fdiv	FMUL2	FMA0		
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+4	Yes		fdiv	f0	f0	f6	EXEC	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	FMUL2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	No	FSUB3
+
+
+------------------ clock 16--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	Yes	fdiv	FMUL2	FMA0		
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+4	Yes		fdiv	f0	f0	f6	EXEC	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	FMUL2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	No	FSUB3
+
+
+------------------ clock 17--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	Yes	fdiv	FMUL2	FMA0		
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+4	Yes		fdiv	f0	f0	f6	EXEC	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	FMUL2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	No	FSUB3
+
+
+------------------ clock 18--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	Yes	fdiv	FMUL2	FMA0		
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+4	Yes		fdiv	f0	f0	f6	EXEC	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	FMUL2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	No	FSUB3
+
+
+------------------ clock 19--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	Yes	fdiv	FMUL2	FMA0		
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+4	Yes		fdiv	f0	f0	f6	EXEC	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	FMUL2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	No	FSUB3
+
+
+------------------ clock 20--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	Yes	fdiv	FMUL2	FMA0		
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+4	Yes		fdiv	f0	f0	f6	EXEC	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	FMUL2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	No	FSUB3
+
+
+------------------ clock 21--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	Yes	fdiv	FMUL2	FMA0		
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+4	Yes		fdiv	f0	f0	f6	EXEC	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	FMUL2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	No	FSUB3
+
+
+------------------ clock 22--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	Yes	fdiv	FMUL2	FMA0		
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+4	Yes		fdiv	f0	f0	f6	EXEC	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	FMUL2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	No	FSUB3
+
+
+------------------ clock 23--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	Yes	fdiv	FMUL2	FMA0		
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+4	Yes		fdiv	f0	f0	f6	EXEC	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	FMUL2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	No	FSUB3
+
+
+------------------ clock 24--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	Yes	fdiv	FMUL2	FMA0		
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+4	Yes		fdiv	f0	f0	f6	WB	f0	
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	FMUL2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	No	FSUB3
+
+
+------------------ clock 25--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+4	Yes		fdiv	f0	f0	f6	COMMIT	f0	FDIV4
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	Yes	FMUL2
+f2	No	FMA1
+f6	Yes	FMA0
+f8	No	FSUB3
+
+
+------------------ clock 26--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+5	Yes		fadd	f6	f8	f2	COMMIT	f6	FAD5
+
+
+Register Status 
+Reg	Busy	Value
+f0	No	FDIV4
+f2	No	FMA1
+f6	Yes	FMA0
+f8	No	FSUB3
+
+
+------------------ clock 27--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Reorder Buffer: 
+entry	busy	instruction				state	des	val
+
+
+Register Status 
+Reg	Busy	Value
+f0	No	FDIV4
+f2	No	FMA1
+f6	No	FAD5
+f8	No	FSUB3
+

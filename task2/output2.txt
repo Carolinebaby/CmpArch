@@ -1,0 +1,774 @@
+
+------------------ clock 0--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	No					
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Register Status 
+Reg	Busy	Value
+
+
+------------------ clock 1--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins0	
+Add2	No					
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	No		
+Store3	No		
+
+Register Status 
+Reg	Busy	Value
+x2	Yes	ins0
+
+
+------------------ clock 2--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins0	
+Add2	Yes	addi	R(x1)	8		
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins1
+Store2	No		
+Store3	No		
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ins3
+x2	Yes	ins0
+
+
+------------------ clock 3--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins0	
+Add2	Yes	addi	R(x1)	8		
+Add3	No					
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins3	
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins1
+Store2	No		
+Store3	No		
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ins3
+x2	Yes	ins0
+
+
+------------------ clock 4--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi	MA1	1		
+Add2	Yes	addi	R(x1)	8		
+Add3	Yes	addi		1	ins5	
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins3	
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins1
+Store2	No		
+Store3	No		
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ins3
+x2	Yes	MA1
+
+
+------------------ clock 5--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi	MA1	1		
+Add2	No					
+Add3	Yes	addi		1	ins5	
+Add4	Yes	addi	ADI1	8		
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne	ADI1	R(x3)		
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins1
+Store2	Yes	x1(0)	ins6
+Store3	No		
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI1
+x2	Yes	MA1
+
+
+------------------ clock 6--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	No					
+Add2	No					
+Add3	Yes	addi		1	ins5	
+Add4	Yes	addi	ADI1	8		
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	Yes	bne		R(x3)	ins8	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ADI2
+Store2	Yes	x1(0)	ins6
+Store3	No		
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI1
+x2	Yes	ADI2
+
+
+------------------ clock 7--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	No					
+Add3	Yes	addi		1	ins5	
+Add4	Yes	addi	ADI1	8		
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	Yes	bne		R(x3)	ins8	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	Yes	x1(0)	ins6
+Store3	No		
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI1
+x2	Yes	ADI2
+
+
+------------------ clock 8--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	Yes	addi		8	ins8	
+Add3	Yes	addi		1	ins5	
+Add4	Yes	addi	ADI1	8		
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	Yes	bne		R(x3)	ins8	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	Yes	x1(0)	ins6
+Store3	No		
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI1
+x2	Yes	ADI2
+
+
+------------------ clock 9--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	Yes	addi		8	ins8	
+Add3	Yes	addi	MA2	1		
+Add4	Yes	addi	ADI1	8		
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins13	
+Branch2	Yes	bne		R(x3)	ins8	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	No	
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	Yes	x1(0)	ins6
+Store3	No		
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI1
+x2	Yes	MA2
+
+
+------------------ clock 10--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	Yes	addi	ADI3	8		
+Add3	Yes	addi	MA2	1		
+Add4	No					
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins13	
+Branch2	Yes	bne	ADI3	R(x3)		
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	Yes	x1(0)	ins6
+Store3	No		
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI3
+x2	Yes	MA2
+
+
+------------------ clock 11--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	Yes	addi	ADI3	8		
+Add3	No					
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins13	
+Branch2	No					
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	Yes	x1(0)	ADI4
+Store3	Yes	x1(0)	ins16
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI3
+x2	Yes	ADI4
+
+
+------------------ clock 12--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	Yes	addi	ADI3	8		
+Add3	Yes	addi		8	ins13	
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins13	
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	No	
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	No		
+Store3	Yes	x1(0)	ins16
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI3
+x2	Yes	ADI4
+
+
+------------------ clock 13--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		1	ins10	
+Add2	Yes	addi	ADI3	8		
+Add3	Yes	addi		8	ins13	
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins13	
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	No		
+Store3	Yes	x1(0)	ins16
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI3
+x2	Yes	ADI4
+
+
+------------------ clock 14--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi	MA3	1		
+Add2	Yes	addi	ADI3	8		
+Add3	Yes	addi		8	ins13	
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins13	
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	No		
+Store3	Yes	x1(0)	ins16
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI3
+x2	Yes	MA3
+
+
+------------------ clock 15--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi	MA3	1		
+Add2	No					
+Add3	Yes	addi	ADI5	8		
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne	ADI5	R(x3)		
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ins11
+Store2	No		
+Store3	Yes	x1(0)	ins16
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI5
+x2	Yes	MA3
+
+
+------------------ clock 16--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	No					
+Add2	Yes	addi		1	ins20	
+Add3	Yes	addi	ADI5	8		
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	No					
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	Yes	x1(0)	ADI6
+Store2	Yes	x1(0)	ins21
+Store3	Yes	x1(0)	ins16
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI5
+x2	Yes	ADI6
+
+
+------------------ clock 17--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		8	ins18	
+Add2	Yes	addi		1	ins20	
+Add3	Yes	addi	ADI5	8		
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins23	
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	No	
+Load2	Yes	x1(0)
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	Yes	x1(0)	ins21
+Store3	Yes	x1(0)	ins16
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI5
+x2	Yes	ADI6
+
+
+------------------ clock 18--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		8	ins18	
+Add2	Yes	addi		1	ins20	
+Add3	Yes	addi	ADI5	8		
+Add4	Yes	addi		1	ins15	
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins23	
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	Yes	x1(0)
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	Yes	x1(0)	ins21
+Store3	Yes	x1(0)	ins16
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI5
+x2	Yes	ADI6
+
+
+------------------ clock 19--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi		8	ins18	
+Add2	Yes	addi		1	ins20	
+Add3	Yes	addi	ADI5	8		
+Add4	Yes	addi	MA4	1		
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins23	
+Branch2	Yes	bne		R(x3)	ins18	
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	No	
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	Yes	x1(0)	ins21
+Store3	Yes	x1(0)	ins16
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI5
+x2	Yes	MA4
+
+
+------------------ clock 20--------------------
+
+Reservation Stations: 
+Name	Busy	Op	Vj	Vk	Qj	Qk
+fAdd1	No					
+fAdd2	No					
+fAdd3	No					
+fMult1	No					
+fMult2	No					
+Add1	Yes	addi	ADI7	8		
+Add2	Yes	addi		1	ins20	
+Add3	No					
+Add4	Yes	addi	MA4	1		
+Mult1	No					
+Mult2	No					
+Branch1	Yes	bne		R(x3)	ins23	
+Branch2	Yes	bne	ADI7	R(x3)		
+Branch3	No					
+
+Load Buffer: 
+Name	Busy	Address
+Load1	Yes	x1(0)
+Load2	No	
+Load3	Yes	x1(0)
+
+Store Buffer: 
+Name	Busy	Address	Des
+Store1	No		
+Store2	Yes	x1(0)	ins21
+Store3	Yes	x1(0)	ins16
+
+Register Status 
+Reg	Busy	Value
+x1	Yes	ADI7
+x2	Yes	MA4
+
